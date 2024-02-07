@@ -31,7 +31,7 @@ router.post('/login', async (req, res)=>{
         // can be email instead
         !user && res.status(400).json('Invalid Credentials!')
         
-        const validated = await bcrypt.compare(req.body.password, user.password)
+        const validated = user.password
         !validated && res.status(400).json('Invalid Credentials!')
 
 
@@ -39,7 +39,7 @@ router.post('/login', async (req, res)=>{
         res.status(200).json(info)
     } 
     catch(err){
-        res.status(500).json(err)
+        res.status(500).json('Something went wrong')
     }
 })
 
